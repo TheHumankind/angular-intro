@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SearchComponent } from './search/search.component';
 import { FilterOptionsComponent } from './filter-options/filter-options.component';
 import { HeaderBlockComponent } from './header-block/header-block.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 
 
@@ -10,7 +11,8 @@ import { HeaderBlockComponent } from './header-block/header-block.component';
   declarations: [
     SearchComponent,
     FilterOptionsComponent,
-    HeaderBlockComponent
+    HeaderBlockComponent,
+    SearchResultComponent
   ],
   imports: [
     CommonModule
