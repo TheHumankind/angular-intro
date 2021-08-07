@@ -13,4 +13,9 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  tryToClick(e: Event) {
+    e.preventDefault();
+    console.log('search click');
+  }
+
 }

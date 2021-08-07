@@ -12,5 +12,4 @@ export class FilterOptionsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

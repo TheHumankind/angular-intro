@@ -1,4 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Item } from 'src/app/models/item';
+import { YMCAState } from 'src/app/store/ymca.state';
 
 @Component({
   selector: 'app-main-block',
@@ -8,7 +11,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class MainBlockComponent implements OnInit {
 
-  constructor() { }
+  @Select(YMCAState.items) 
+  cardsItems$: Item[];
+
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
   }

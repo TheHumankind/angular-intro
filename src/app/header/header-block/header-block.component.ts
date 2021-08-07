@@ -12,5 +12,4 @@ export class HeaderBlockComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

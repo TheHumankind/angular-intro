@@ -4,6 +4,7 @@ import { SearchComponent } from './search/search.component';
 import { FilterOptionsComponent } from './filter-options/filter-options.component';
 import { HeaderBlockComponent } from './header-block/header-block.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { AccountComponent } from './account/account.component';
 
 
 
@@ -12,7 +13,8 @@ import { SearchResultComponent } from './search-result/search-result.component';
     SearchComponent,
     FilterOptionsComponent,
     HeaderBlockComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    AccountComponent
   ],
   imports: [
     CommonModule
