@@ -5,8 +5,7 @@ import { FilterOptionsComponent } from './filter-options/filter-options.componen
 import { HeaderBlockComponent } from './header-block/header-block.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { AccountComponent } from './account/account.component';
-
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,8 @@ import { AccountComponent } from './account/account.component';
     AccountComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     SearchComponent,

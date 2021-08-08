@@ -1,4 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { SortByDate, SortByKeyWord, SortByViewers } from 'src/app/store/ymca.action';
+import { YMCAState } from 'src/app/store/ymca.state';
 
 @Component({
   selector: 'app-filter-options',
@@ -7,9 +11,33 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterOptionsComponent implements OnInit {
+  sortedBy$: Observable<YMCAState>;
 
-  constructor() { }
+  key: string;
 
-  ngOnInit(): void {
+  constructor(private store: Store) {
+    this.sortedBy$ = this.store.selectSnapshot(state => state.YMCAState.sortedItems);
+  }
+
+  @Select((state: { app: any; }) => state.app) app$: any;
+
+  ngOnInit(): void {}
+
+  keyChanger(key: string) {
+    this.store.dispatch([
+      new SortByKeyWord(key)
+    ]);
+  }
+
+  sortByViews() {
+    this.store.dispatch([
+      new SortByViewers()
+    ]);
+  }
+
+  sortByDate() {
+    this.store.dispatch([
+      new SortByDate()
+    ]);
   }
 }

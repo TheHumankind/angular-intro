@@ -9,10 +9,11 @@ import { HeaderModule } from './header/header.module';
 import { MainModule } from './main/main.module';
 import { YMCAState } from './store/ymca.state';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     HttpClientModule,
@@ -24,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
       developmentMode: !environment.production
     }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

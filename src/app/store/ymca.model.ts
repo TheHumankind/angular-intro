@@ -2,5 +2,7 @@ import { Item } from "../models/item";
 
 export interface Face {
     items: Item[],
-    filterOption?: boolean,
+    sortedItems: Item[],
+    filterTrigger?: boolean,
+    sortOrder: boolean,
 }
