@@ -22,7 +22,7 @@ export class FilterOptionsComponent implements OnInit {
     this.filter$ = this.store.selectSnapshot(state => state.YMCAState.filterBool);
   }
 
-  @Select((state: { app: any; }) => state.app) app$: any;
+  @Select((state: { app: any }) => state.app) app$: any;
 
   ngOnInit(): void {}
 

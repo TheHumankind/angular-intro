@@ -61,11 +61,10 @@ export class YMCAState {
     @Action(LoadItem)
     getItem({getState, patchState}: StateContext<Face>) {
         return this.httpService.getHttp().pipe(
-            tap((res: any) => {
-                const state = getState();
+            tap(res => {
+                const p = JSON.parse(JSON.stringify(res));
                 patchState({
-                    ...state,
-                    items: res.items,
+                   items: p.items,
                 });
             }));
     } 
