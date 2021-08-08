@@ -13,10 +13,13 @@ import { YMCAState } from 'src/app/store/ymca.state';
 export class FilterOptionsComponent implements OnInit {
   sortedBy$: Observable<YMCAState>;
 
+  filter$: Observable<YMCAState>;
+
   key: string;
 
   constructor(private store: Store) {
     this.sortedBy$ = this.store.selectSnapshot(state => state.YMCAState.sortedItems);
+    this.filter$ = this.store.selectSnapshot(state => state.YMCAState.filterBool);
   }
 
   @Select((state: { app: any; }) => state.app) app$: any;
