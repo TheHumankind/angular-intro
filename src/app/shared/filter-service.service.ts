@@ -14,5 +14,5 @@ export class FilterServiceService {
     this.filter$ = this.store.selectSnapshot(state => state.YMCAState.filterBool);
   }
 
-  @Select((state: { app: any; }) => state.app) app$: any;
+  @Select((state: { app: Face; }) => state.app) app$: Face;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { Face } from 'src/app/store/ymca.model';
 import { YMCAState } from 'src/app/store/ymca.state';
 
 @Component({
@@ -16,7 +17,7 @@ export class HeaderBlockComponent implements OnInit {
     this.boolTriger$ = this.store.selectSnapshot(state => state.YMCAState.filterBool);
   }
 
-  @Select((state: { app: any; }) => state.app) app$: any;
+  @Select((state: { app: Face; }) => state.app) app$: Face;
 
   ngOnInit(): void {
   }

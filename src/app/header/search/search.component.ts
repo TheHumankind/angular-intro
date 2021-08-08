@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { updateFilterTrigger } from 'src/app/store/ymca.action';
+import { Face } from 'src/app/store/ymca.model';
 import { YMCAState } from 'src/app/store/ymca.state';
 
 @Component({
@@ -13,7 +14,7 @@ export class SearchComponent implements OnInit {
 
   constructor(private store: Store) {}
 
-  @Select((state: { app: any; }) => state.app) app$: any;
+  @Select((state: { app: Face; }) => state.app) app$: Face;
 
   ngOnInit(): void {
   }
