@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Item } from 'src/app/models/item';
@@ -16,7 +16,7 @@ export class CardComponent implements OnInit {
   cardsItems$: Observable<Item[]>;
 
   constructor(private store: Store) {
-    this.cardsItems$ = combineLatest([this.store.select(YMCAState.items)]).pipe(
+    this.cardsItems$ = combineLatest([this.store.select(YMCAState.sortedItems)]).pipe(
       map(([items]) => [...items])
       )
   }
@@ -29,11 +29,11 @@ export class CardComponent implements OnInit {
     const currentDate = new Date();
     let borderColor = '';
     if (currentDate.getFullYear() - data.getFullYear() >= 1) {
-      borderColor = 'red';
+      borderColor = '#e77b7b';
     } else if (currentDate.getFullYear() === data.getFullYear() && currentDate.getMonth() > data.getMonth()) {
-      borderColor = 'yellow';
+      borderColor = '#ffff75';
     } else {
-      borderColor = 'green';
+      borderColor = '#81e278';
     }
     return borderColor;
   }

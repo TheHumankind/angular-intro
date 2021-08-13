@@ -1,4 +1,4 @@
-<div class = "filter unselectable" [ngClass]="{notVisible: filter$}">
+<div class = "filter unselectable" [class.notVisible]="f$ | async">
     <div class = "filter-descr">
         Sort by:
     </div>

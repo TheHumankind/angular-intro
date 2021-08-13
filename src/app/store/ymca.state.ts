@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { HttpRequestService } from "../shared/http-request.service";
 import {LoadItem, SortByDate, SortByKeyWord, SortByViewers, updateFilterTrigger} from "./ymca.action";
 import { Item } from "../models/item";
+import { FilterService } from "../shared/filter-service.service";
 
 function sortMeByViewsTrue(a:Item, b:Item) {
     const nameA = +a.statistics.viewCount;
@@ -56,10 +57,10 @@ function sortMeByDateFalse(a:Item, b:Item) {
 
 @Injectable()
 export class YMCAState {
-    constructor(public httpService: HttpRequestService) { }
+    constructor(public httpService: HttpRequestService, public filterService: FilterService) { }
 
     @Action(LoadItem)
-    getItem({getState, patchState}: StateContext<Face>) {
+    getItem({ patchState}: StateContext<Face>) {
         return this.httpService.getHttp().pipe(
             tap(res => {
                 const p = JSON.parse(JSON.stringify(res));
@@ -73,6 +74,7 @@ export class YMCAState {
     trigger({patchState, getState}: StateContext<Face>) {
         const currentState = getState().filterTrigger;
         patchState({filterTrigger: !currentState});
+        return !currentState;
     }
 
     @Action(SortByKeyWord)
@@ -120,9 +122,6 @@ export class YMCAState {
 
     @Selector() 
     public static filterBool(state: Face): boolean {
-        if (!state.filterTrigger) {
-            state.filterTrigger = true;
-        }
         return state.filterTrigger;
     }
 

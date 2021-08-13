@@ -1,8 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { SortByDate, SortByKeyWord, SortByViewers } from 'src/app/store/ymca.action';
-import { Face } from 'src/app/store/ymca.model';
 import { YMCAState } from 'src/app/store/ymca.state';
 
 @Component({
@@ -12,20 +11,20 @@ import { YMCAState } from 'src/app/store/ymca.state';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterOptionsComponent implements OnInit {
-  sortedBy$: Observable<YMCAState>;
 
-  filter$: Observable<YMCAState>;
+  f$: Observable<boolean>;
 
   key: string;
 
-  constructor(private store: Store) {
-    this.sortedBy$ = this.store.selectSnapshot(state => state.YMCAState.sortedItems);
-    this.filter$ = this.store.selectSnapshot(state => state.YMCAState.filterBool);
+  constructor(private store: Store) { 
+    this.f$ = this.store.select(YMCAState.filterBool);
   }
 
-  @Select((state: { app: Face }) => state.app) app$: Face;
+  ngOnInit(): void { }
 
-  ngOnInit(): void {}
+  returnF() {
+    return this.f$;
+  }
 
   keyChanger(key: string) {
     this.store.dispatch([

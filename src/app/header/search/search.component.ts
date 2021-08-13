@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { updateFilterTrigger } from 'src/app/store/ymca.action';
+import { Observable } from 'rxjs';
+import { SortByDate, updateFilterTrigger } from 'src/app/store/ymca.action';
 import { Face } from 'src/app/store/ymca.model';
 import { YMCAState } from 'src/app/store/ymca.state';
 
@@ -12,16 +13,20 @@ import { YMCAState } from 'src/app/store/ymca.state';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private store: Store) {}
+  filter$: Observable<boolean>;
 
-  @Select((state: { app: Face; }) => state.app) app$: Face;
+  constructor(private store: Store) {
+  }
+
 
   ngOnInit(): void {
   }
 
-  tryToClick(e: Event) {
-    e.preventDefault();
-    return this.store.selectSnapshot(YMCAState.filterBool);
+  fakeResponse(event: Event) {
+    event.preventDefault();
+    this.store.dispatch([
+      new SortByDate()
+    ]);
   }
 
   clickHandler(event: Event) {

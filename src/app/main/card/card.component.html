@@ -3,7 +3,7 @@
         <div class="video-stats">
             <div>
                 <img src="./../../../assets/img/love.svg" alt="like icon">
-                {{ item.statistics.viewCount }}
+                {{ item.statistics.likeCount }}
             </div>
             <div>
                 <img src="./../../../assets/img/hate.svg" alt="HATE icon">
@@ -15,11 +15,11 @@
             </div>
             <div>
                 <img src="./../../../assets/img/comment.svg" alt="COMMENT icon">
-                {{ item.statistics.viewCount }}
+                {{ item.statistics.commentCount }}
             </div>
         </div>
         <div class="video-prev">
-            <img src="{{item.snippet.thumbnails.medium.url}}" alt="заебисья">
+            <img src="{{item.snippet.thumbnails.medium.url}}" alt="item image">
         </div>
         <div class="video-name"> {{ item.snippet.title }} </div>
         <div class="more-btn">
