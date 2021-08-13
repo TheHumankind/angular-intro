@@ -10,6 +10,7 @@ import { MainModule } from './main/main.module';
 import { YMCAState } from './store/ymca.state';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { LoginPopUpModule } from './login-pop-up/login-pop-up.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HeaderModule,
     MainModule,
+    LoginPopUpModule,
     NgxsModule.forRoot([YMCAState], {
       developmentMode: !environment.production
     }),
