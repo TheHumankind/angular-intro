@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="container-item" *ngFor="let item of cardsItems$ | async"  [ngStyle]="{'border-color': theBorderIs(item)}">
+        <div class="video-stats">
+            <div>
+                <img src="./../../../assets/img/love.svg" alt="like icon">
+                {{ item.statistics.likeCount }}
+            </div>
+            <div>
+                <img src="./../../../assets/img/hate.svg" alt="HATE icon">
+                {{ item.statistics.dislikeCount }}
+            </div>
+            <div>
+                <img src="./../../../assets/img/watch.svg" alt="WATCH icon">
+                {{ item.statistics.viewCount }}
+            </div>
+            <div>
+                <img src="./../../../assets/img/comment.svg" alt="COMMENT icon">
+                {{ item.statistics.commentCount }}
+            </div>
+        </div>
+        <div class="video-prev">
+            <img src="{{item.snippet.thumbnails.medium.url}}" alt="item image">
+        </div>
+        <div class="video-name"> {{ item.snippet.title }} </div>
+        <div class="more-btn" [id]="item.id" (click)="selectItem(item.id)">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>

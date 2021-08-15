@@ -1,0 +1,44 @@
+.notVisible {
+    display: none;
+}
+
+.info { 
+    display: flex;
+    justify-content: center;
+    column-gap: 40px;
+    width: 100%;
+    margin-top: 60px;
+    padding: 40px;
+    border: 4px solid #8cadd6;
+    border-radius: 15px;
+    box-sizing: border-box;
+
+    .title {
+        height: 24px;
+        overflow: hidden;
+    }
+
+    &-descr {
+        height: 300px;
+        overflow-y: scroll;
+        overflow: -moz-scrollbars-none;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar { 
+            width: 0; 
+        }
+    }
+
+    &-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 75%;
+        & > img {
+            width: 100%;
+        }
+    }
+
+    &-container {
+        width: 50%;
+    }
+}
