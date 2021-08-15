@@ -22,7 +22,7 @@
             <img src="{{item.snippet.thumbnails.medium.url}}" alt="item image">
         </div>
         <div class="video-name"> {{ item.snippet.title }} </div>
-        <div class="more-btn">
+        <div class="more-btn" [id]="item.id" (click)="selectItem(item.id)">
             <span></span>
             <span></span>
             <span></span>

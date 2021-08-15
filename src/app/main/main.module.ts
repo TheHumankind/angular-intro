@@ -17,7 +17,8 @@ import { MoreInfoComponent } from './more-info/more-info.component';
   ],
   exports: [
     MainBlockComponent,
-    CardComponent
+    CardComponent,
+    MoreInfoComponent
   ]
 })
 export class MainModule { }

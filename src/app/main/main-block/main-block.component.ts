@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Item } from 'src/app/models/item';
 import { YMCAState } from 'src/app/store/ymca.state';
 
@@ -9,14 +11,13 @@ import { YMCAState } from 'src/app/store/ymca.state';
   styleUrls: ['./main-block.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainBlockComponent implements OnInit {
+export class MainBlockComponent {
+  
+  selected$: Observable<Item[]>;
 
-  @Select(YMCAState.items) 
-  cardsItems$: Item[];
-
-  constructor(private store: Store) { }
-
-  ngOnInit(): void {
+  constructor(private store: Store) {
+    this.selected$ = combineLatest([this.store.select(YMCAState.selectItem)]).pipe(
+      map(([items]) => [...items])
+    )
   }
-
 }

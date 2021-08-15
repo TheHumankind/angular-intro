@@ -3,6 +3,7 @@ import { Store } from '@ngxs/store';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Item } from 'src/app/models/item';
+import { SelectItem } from 'src/app/store/ymca.action';
 import { YMCAState } from 'src/app/store/ymca.state';
 
 @Component({
@@ -11,7 +12,7 @@ import { YMCAState } from 'src/app/store/ymca.state';
   styleUrls: ['./card.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CardComponent implements OnInit {  
+export class CardComponent {  
 
   cardsItems$: Observable<Item[]>;
 
@@ -21,7 +22,10 @@ export class CardComponent implements OnInit {
       )
   }
 
-  ngOnInit(): void {
+  selectItem(id: string) {
+    this.store.dispatch([
+      new SelectItem(id)
+    ]);
   }
 
   theBorderIs(item: Item) {

@@ -20,3 +20,13 @@ export class SortByViewers {
     constructor() {}
     static readonly type = '[YMCA] Sorted by viewers';
 }
+
+export class SelectItem {
+    constructor(public id: string) {}
+    static readonly type = '[YMCA] Selected item is changed';
+}
+
+export class ClearSelectedItem {
+    constructor() {}
+    static readonly type = '[YMCA] Clear selected item';
+}

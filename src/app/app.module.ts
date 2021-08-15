@@ -18,8 +18,8 @@ import { LoginPopUpModule } from './login-pop-up/login-pop-up.module';
   ],
   imports: [
     HttpClientModule,
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,    
     HeaderModule,
     MainModule,
     LoginPopUpModule,

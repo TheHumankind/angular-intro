@@ -10,7 +10,7 @@ import { YMCAState } from 'src/app/store/ymca.state';
   styleUrls: ['./header-block.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderBlockComponent implements OnInit {
+export class HeaderBlockComponent {
   boolTriger$: Observable<YMCAState>;
 
   constructor(private store: Store) {
@@ -18,7 +18,4 @@ export class HeaderBlockComponent implements OnInit {
   }
 
   @Select((state: { app: Face; }) => state.app) app$: Face;
-
-  ngOnInit(): void {
-  }
 }

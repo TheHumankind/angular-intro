@@ -5,11 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './login-popup-form.component.html',
   styleUrls: ['./login-popup-form.component.less']
 })
-export class LoginPopupFormComponent implements OnInit {
+export class LoginPopupFormComponent {
 
   constructor() { }
 
-  ngOnInit(): void {
+  createToken(event: Event) {
+    event.preventDefault();
+    const local = window.localStorage;
+    local.setItem('token', Math.random().toString(16));
+    window.location.pathname = 'main';
   }
-
 }

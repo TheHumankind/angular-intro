@@ -10,7 +10,7 @@ import { YMCAState } from 'src/app/store/ymca.state';
   styleUrls: ['./filter-options.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FilterOptionsComponent implements OnInit {
+export class FilterOptionsComponent {
 
   f$: Observable<boolean>;
 
@@ -19,8 +19,6 @@ export class FilterOptionsComponent implements OnInit {
   constructor(private store: Store) { 
     this.f$ = this.store.select(YMCAState.filterBool);
   }
-
-  ngOnInit(): void { }
 
   returnF() {
     return this.f$;

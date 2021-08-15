@@ -3,9 +3,10 @@ import { Face } from "./ymca.model";
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { tap } from 'rxjs/operators';
 import { HttpRequestService } from "../shared/http-request.service";
-import {LoadItem, SortByDate, SortByKeyWord, SortByViewers, updateFilterTrigger} from "./ymca.action";
+import {LoadItem, SortByDate, SortByKeyWord, SortByViewers, updateFilterTrigger, SelectItem, ClearSelectedItem} from "./ymca.action";
 import { Item } from "../models/item";
 import { FilterService } from "../shared/filter-service.service";
+import { isNgTemplate } from "@angular/compiler";
 
 function sortMeByViewsTrue(a:Item, b:Item) {
     const nameA = +a.statistics.viewCount;
@@ -50,6 +51,7 @@ function sortMeByDateFalse(a:Item, b:Item) {
     defaults: {
         items: [],
         sortedItems: [],
+        selectedItem: [],
         filterTrigger: true,
         sortOrder: false,
     }
@@ -60,7 +62,7 @@ export class YMCAState {
     constructor(public httpService: HttpRequestService, public filterService: FilterService) { }
 
     @Action(LoadItem)
-    getItem({ patchState}: StateContext<Face>) {
+    getItem({ patchState, getState }: StateContext<Face>) {
         return this.httpService.getHttp().pipe(
             tap(res => {
                 const p = JSON.parse(JSON.stringify(res));
@@ -88,6 +90,25 @@ export class YMCAState {
         });
         patchState({sortedItems: arrOfItem});
     }
+
+    @Action(SelectItem)
+    selectItem({ patchState, getState }: StateContext<Face>, { id }: SelectItem) {
+        const currentState = getState().items;
+        currentState.forEach((e) => {
+            if (e.id === id) {
+                patchState({
+                    selectedItem: [e],
+                });
+            }
+        });
+    } 
+
+    @Action(ClearSelectedItem)
+    clearSelectedItem({ patchState, getState }: StateContext<Face>) {
+        patchState({
+            selectedItem: [],
+        })
+    } 
 
     @Action(SortByViewers)
     sortByViewers({patchState, getState}: StateContext<Face>) {
@@ -128,5 +149,10 @@ export class YMCAState {
     @Selector() 
     public static sortedItems(state: Face): Item[] {
         return state.sortedItems;
+    }
+
+    @Selector() 
+    public static selectItem(state: Face) {
+        return state.selectedItem;
     }
 }

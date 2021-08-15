@@ -5,11 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './login-block.component.html',
   styleUrls: ['./login-block.component.less']
 })
-export class LoginBlockComponent implements OnInit {
+export class LoginBlockComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

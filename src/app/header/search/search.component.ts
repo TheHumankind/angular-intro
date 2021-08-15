@@ -11,25 +11,29 @@ import { YMCAState } from 'src/app/store/ymca.state';
   styleUrls: ['./search.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
   filter$: Observable<boolean>;
 
   constructor(private store: Store) {
   }
 
-
-  ngOnInit(): void {
-  }
-
   fakeResponse(event: Event) {
     event.preventDefault();
+    if (!window.localStorage.getItem('token')) {
+      window.location.pathname = 'login';
+      return;
+    }
     this.store.dispatch([
       new SortByDate()
     ]);
   }
 
   clickHandler(event: Event) {
+    if (!window.localStorage.getItem('token')) {
+      window.location.pathname = 'login';
+      return;
+    }
     event.preventDefault();
     this.store.dispatch([
       new updateFilterTrigger()
