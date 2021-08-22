@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { LoadItem, SortByViewers, updateFilterTrigger } from 'src/app/store/ymca.action';
@@ -15,7 +16,7 @@ export class SearchComponent {
 
   inputValue: string;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
     this.inputValue = '';
   }
 
@@ -33,6 +34,7 @@ export class SearchComponent {
     setTimeout(() => {
       const iVal = inptValue;
       if (iVal === this.inputValue) {
+        this.router.navigate(['main']);
         this.store.dispatch([
           new LoadItem(iVal)
         ]);
@@ -41,10 +43,6 @@ export class SearchComponent {
   }
 
   clickHandler(event: Event) {
-    if (!window.localStorage.getItem('token')) {
-      window.location.pathname = 'login';
-      return;
-    }
     event.preventDefault();
     this.store.dispatch([
       new updateFilterTrigger()
