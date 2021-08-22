@@ -1,0 +1,35 @@
+.filter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 600px;
+    font-family: 'Georama', sans-serif;
+    color: #fff;
+
+    &-options {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 80%;    
+    }
+
+    &-descr {
+        font-weight: 600;
+    }
+
+    &-date, &-views {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    &-input {
+        width: 125px;
+        height: 20px;
+        font-size: 14px;
+        margin: 0;
+    }
+}
+
+.notVisible {
+    display: none;
+}

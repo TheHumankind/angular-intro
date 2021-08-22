@@ -1,0 +1,17 @@
+<div class = "filter unselectable" [class.notVisible]="f$ | async">
+    <div class = "filter-descr">
+        Sort by:
+    </div>
+    <div class="filter-options">
+        <div class = "filter-date" (click)="sortByDate()">
+            date
+        </div>
+        <div class = "filter-views" (click)="sortByViews()">
+            count of views
+        </div>
+        <div class = "filter-sence">
+            by word or sentance:
+        </div>
+        <input type="text" class="input filter-input" [(ngModel)]="key" (input)="keyChanger(key)">
+    </div>
+</div>
