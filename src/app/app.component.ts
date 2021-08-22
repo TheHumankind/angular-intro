@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { AppComponentServiceService } from './shared/app-component-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,9 @@ import { AppComponentServiceService } from './shared/app-component-service.servi
 })
 
 export class AppComponent {
-   public constructor(private store : Store) {
+   public constructor(private store: Store, private router: Router) {
     new AppComponentServiceService(store);
+    // router.navigate(['login']);
+    router.navigate(['error']);
   }
 }
