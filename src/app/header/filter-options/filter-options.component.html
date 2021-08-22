@@ -1,5 +1,4 @@
 <div class = "filter unselectable" [class.notVisible]="f$ | async">
-    {{ f$ }}
     <div class = "filter-descr">
         Sort by:
     </div>
@@ -11,7 +10,7 @@
             count of views
         </div>
         <div class = "filter-sence">
-            by word or sentance
+            by word or sentance:
         </div>
         <input type="text" class="input filter-input" [(ngModel)]="key" (input)="keyChanger(key)">
     </div>

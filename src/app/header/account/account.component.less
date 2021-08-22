@@ -1,6 +1,6 @@
 .account {
     position: absolute;
-    top: 18px;
+    top: 0px;
     right: -2%;
     display: flex;
     justify-content: center;
@@ -12,13 +12,24 @@
     color: #fff;
     cursor: pointer;
 
-    .account-icon {
-        width: 32px;
-        height: 32px;
-        margin-left: 15px;
-
-        & > img {
-            width: 32px;
-        }
+    &-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 125px;
+        height: 35px;
+        padding: 0px 10px;
+        border-radius: 25px;
+        border: none;
+        box-shadow: 2px 1px 5px 0px #5670af;
+        background-color: #5670af;
+        font-family: 'Georama';
+        font-style: italic;
+        font-size: 16px;
+        font-weight: 500;
+        text-transform: capitalize;
+        color: #fff;
+        cursor: pointer;
+        outline: none;
     }
 }

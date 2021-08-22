@@ -7,11 +7,17 @@ import { HttpClient } from '@angular/common/http';
 
 export class HttpRequestService {
 
-  responseUrl: string = 'https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/angular/response.json';
+  responseUrl: string = '';
+
+  arrOfId: string[];
 
   constructor(private http: HttpClient) { }
 
-  getHttp() {
-    return this.http.get(this.responseUrl);
+  getHttp(keyWord: string) {
+    return this.http.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyCBQATnyE0MzdT0WKkKNLDcvJXmHRpUd1E&type=video&part=snippet&maxResults=10&q=${keyWord}`);
+  }
+
+  getRealData(resp: string) {
+    return this.http.get(`https://www.googleapis.com/youtube/v3/videos?key=AIzaSyCBQATnyE0MzdT0WKkKNLDcvJXmHRpUd1E&id=${resp}&part=snippet,statistics`);
   }
 }

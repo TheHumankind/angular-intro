@@ -6,4 +6,5 @@ export interface Face {
     selectedItem: Item[],
     filterTrigger: boolean,
     sortOrder: boolean,
+    loginTrigger: boolean,
 }

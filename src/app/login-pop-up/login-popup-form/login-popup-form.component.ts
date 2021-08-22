@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { ChangeLoginTrigger } from 'src/app/store/ymca.action';
 
 @Component({
   selector: 'app-login-popup-form',
@@ -7,12 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPopupFormComponent {
 
-  constructor() { }
+  constructor(private store: Store, private router: Router) { }
 
   createToken(event: Event) {
     event.preventDefault();
     const local = window.localStorage;
     local.setItem('token', Math.random().toString(16));
-    window.location.pathname = 'main';
+    this.store.dispatch([
+      new ChangeLoginTrigger(),
+    ])
+    this.router.navigate(['main']);
   }
 }

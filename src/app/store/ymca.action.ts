@@ -1,4 +1,5 @@
 export class LoadItem {
+    constructor(public keyWord: string) {}
     static readonly type = '[YMCA] Items';
 }
 
@@ -12,12 +13,10 @@ export class SortByKeyWord {
 }
 
 export class SortByDate {
-    constructor() {}
     static readonly type = '[YMCA] Sorted by date';
 }
 
 export class SortByViewers {
-    constructor() {}
     static readonly type = '[YMCA] Sorted by viewers';
 }
 
@@ -27,6 +26,9 @@ export class SelectItem {
 }
 
 export class ClearSelectedItem {
-    constructor() {}
     static readonly type = '[YMCA] Clear selected item';
+}
+
+export class ChangeLoginTrigger {
+    static readonly type = '[YMCA] Change Login Trigger';
 }

@@ -7,7 +7,5 @@ import { LoadItem } from '../store/ymca.action';
 })
 export class AppComponentServiceService {
 
-  constructor(private store : Store) {
-    this.store.dispatch(new LoadItem);
-  }
+  constructor(private store : Store) {}
 }

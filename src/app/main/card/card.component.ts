@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -16,13 +17,13 @@ export class CardComponent {
 
   cardsItems$: Observable<Item[]>;
 
-  constructor(private store: Store) {
-    this.cardsItems$ = combineLatest([this.store.select(YMCAState.sortedItems)]).pipe(
-      map(([items]) => [...items])
-      )
+  constructor(private store: Store, private router: Router) {
+    this.cardsItems$ = this.store.select(YMCAState.sortedItems);
   }
 
   selectItem(id: string) {
+    const link = `main/${id}`;
+    this.router.navigate([link]);
     this.store.dispatch([
       new SelectItem(id)
     ]);

@@ -1,9 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { SortByDate, updateFilterTrigger } from 'src/app/store/ymca.action';
-import { Face } from 'src/app/store/ymca.model';
-import { YMCAState } from 'src/app/store/ymca.state';
+import { LoadItem, SortByViewers, updateFilterTrigger } from 'src/app/store/ymca.action';
 
 @Component({
   selector: 'app-search',
@@ -15,18 +13,31 @@ export class SearchComponent {
 
   filter$: Observable<boolean>;
 
+  inputValue: string;
+
   constructor(private store: Store) {
+    this.inputValue = '';
   }
 
   fakeResponse(event: Event) {
     event.preventDefault();
-    if (!window.localStorage.getItem('token')) {
-      window.location.pathname = 'login';
+    this.store.dispatch([
+      new SortByViewers()
+    ])
+  }
+
+  inputEvent(inptValue: string) {
+    if(inptValue.length <= 3) {
       return;
     }
-    this.store.dispatch([
-      new SortByDate()
-    ]);
+    setTimeout(() => {
+      const iVal = inptValue;
+      if (iVal === this.inputValue) {
+        this.store.dispatch([
+          new LoadItem(iVal)
+        ]);
+      }
+    }, 1000);
   }
 
   clickHandler(event: Event) {

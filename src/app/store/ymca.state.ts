@@ -1,12 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Face } from "./ymca.model";
 import { Action, Selector, State, StateContext } from "@ngxs/store";
-import { tap } from 'rxjs/operators';
 import { HttpRequestService } from "../shared/http-request.service";
-import {LoadItem, SortByDate, SortByKeyWord, SortByViewers, updateFilterTrigger, SelectItem, ClearSelectedItem} from "./ymca.action";
+import {LoadItem, SortByDate, SortByKeyWord, SortByViewers, updateFilterTrigger, SelectItem, ClearSelectedItem, ChangeLoginTrigger} from "./ymca.action";
 import { Item } from "../models/item";
 import { FilterService } from "../shared/filter-service.service";
-import { isNgTemplate } from "@angular/compiler";
 
 function sortMeByViewsTrue(a:Item, b:Item) {
     const nameA = +a.statistics.viewCount;
@@ -54,6 +52,7 @@ function sortMeByDateFalse(a:Item, b:Item) {
         selectedItem: [],
         filterTrigger: true,
         sortOrder: false,
+        loginTrigger: false,
     }
 })
 
@@ -62,20 +61,35 @@ export class YMCAState {
     constructor(public httpService: HttpRequestService, public filterService: FilterService) { }
 
     @Action(LoadItem)
-    getItem({ patchState, getState }: StateContext<Face>) {
-        return this.httpService.getHttp().pipe(
-            tap(res => {
-                const p = JSON.parse(JSON.stringify(res));
-                patchState({
-                   items: p.items,
+    getItem({ patchState }: StateContext<Face>, { keyWord }: SortByKeyWord) {
+        this.httpService.getHttp(keyWord)
+            .subscribe((data: any) => {
+                const videoId: string[] = [];
+                const currentItems = JSON.parse(JSON.stringify(data.items));
+                currentItems.forEach((e: { id: { videoId: string; }; }) => {
+                    videoId.push(e.id.videoId);
                 });
-            }));
-    } 
+                this.httpService.getRealData(videoId.join(','))
+                    .subscribe((realVidData: any) => {
+                        patchState({
+                            items: realVidData.items,
+                            sortedItems: realVidData.items
+                        });
+                    });
+            });
+    }
 
     @Action(updateFilterTrigger)
     trigger({patchState, getState}: StateContext<Face>) {
         const currentState = getState().filterTrigger;
         patchState({filterTrigger: !currentState});
+        return !currentState;
+    }
+
+    @Action(ChangeLoginTrigger)
+    changeLoginTrigger({patchState, getState}: StateContext<Face>) {
+        const currentState = getState().loginTrigger;
+        patchState({loginTrigger: !currentState});
         return !currentState;
     }
 
@@ -144,6 +158,11 @@ export class YMCAState {
     @Selector() 
     public static filterBool(state: Face): boolean {
         return state.filterTrigger;
+    }
+
+    @Selector() 
+    public static loginBool(state: Face): boolean {
+        return state.loginTrigger;
     }
 
     @Selector() 

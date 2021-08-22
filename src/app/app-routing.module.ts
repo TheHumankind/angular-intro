@@ -6,9 +6,10 @@ import { BlockComponent } from './page-404/block/block.component';
 
 const routes: Routes = [  
   { path: '', component: LoginBlockComponent },
+  { path: 'login', component: LoginBlockComponent },
   { path: 'main', component: MainBlockComponent },
   { path: 'error', component: BlockComponent },
-  { path: 'login', redirectTo: '/' },
+  { path: 'main/:id', component: MainBlockComponent },
   { path: 'main', redirectTo: 'error' },  
   { path: '**', redirectTo: 'error' },
 ];
