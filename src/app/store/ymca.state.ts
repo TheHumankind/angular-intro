@@ -2,9 +2,10 @@ import { Injectable } from "@angular/core";
 import { Face } from "./ymca.model";
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { HttpRequestService } from "../shared/http-request.service";
-import {LoadItem, SortByDate, SortByKeyWord, SortByViewers, updateFilterTrigger, SelectItem, ClearSelectedItem, ChangeLoginTrigger} from "./ymca.action";
+import {LoadItem, SortByDate, SortByKeyWord, SortByViewers, updateFilterTrigger, SelectItem, ClearSelectedItem, ChangeLoginTrigger, UpdateAdminCards} from "./ymca.action";
 import { Item } from "../models/item";
 import { FilterService } from "../shared/filter-service.service";
+import { AdminCard } from "../models/admin-card";
 
 function sortMeByViewsTrue(a:Item, b:Item) {
     const nameA = +a.statistics.viewCount;
@@ -50,6 +51,7 @@ function sortMeByDateFalse(a:Item, b:Item) {
         items: [],
         sortedItems: [],
         selectedItem: [],
+        adminCards: [],
         filterTrigger: true,
         sortOrder: false,
         loginTrigger: false,
@@ -77,6 +79,15 @@ export class YMCAState {
                         });
                     });
             });
+    }
+
+    @Action(UpdateAdminCards)
+    updateAdminCards({patchState, getState}: StateContext<Face>, { adminCard }: UpdateAdminCards) {
+        const currentState: AdminCard[] = [...getState().adminCards];
+        currentState.push(adminCard);
+        patchState({
+            adminCards: currentState,
+        })
     }
 
     @Action(updateFilterTrigger)
@@ -158,6 +169,11 @@ export class YMCAState {
     @Selector() 
     public static filterBool(state: Face): boolean {
         return state.filterTrigger;
+    }
+
+    @Selector() 
+    public static adminCards(state: Face): AdminCard[] {
+        return state.adminCards;
     }
 
     @Selector() 

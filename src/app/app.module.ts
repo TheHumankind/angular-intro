@@ -11,6 +11,7 @@ import { YMCAState } from './store/ymca.state';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginPopUpModule } from './login-pop-up/login-pop-up.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LoginPopUpModule } from './login-pop-up/login-pop-up.module';
     AppRoutingModule,
     BrowserModule,    
     HeaderModule,
+    AdminModule,
     MainModule,
     LoginPopUpModule,
     NgxsModule.forRoot([YMCAState], {

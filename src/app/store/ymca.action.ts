@@ -1,6 +1,13 @@
+import { AdminCard } from "../models/admin-card";
+
 export class LoadItem {
     constructor(public keyWord: string) {}
     static readonly type = '[YMCA] Items';
+}
+
+export class UpdateAdminCards {
+    constructor(public adminCard: AdminCard) {}
+    static readonly type = '[YMCA] Update Admin Card';
 }
 
 export class updateFilterTrigger {
