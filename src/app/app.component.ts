@@ -12,6 +12,6 @@ import { Router } from '@angular/router';
 export class AppComponent {
    public constructor(private store: Store, private router: Router) {
     new AppComponentServiceService(store);
-    router.navigate(['admin']);
+    router.navigate(['login']);
   }
 }

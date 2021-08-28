@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginBlockComponent } from './login-block/login-block.component';
 import { LoginPopupFormComponent } from './login-popup-form/login-popup-form.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,10 +13,11 @@ import { LoginPopupFormComponent } from './login-popup-form/login-popup-form.com
   ],
   exports: [
     LoginBlockComponent,
-    LoginPopupFormComponent
+    LoginPopupFormComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class LoginPopUpModule { }
