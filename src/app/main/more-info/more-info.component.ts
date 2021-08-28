@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -15,13 +16,14 @@ export class MoreInfoComponent {
 
   selected$: Observable<Item[]>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
     this.selected$ = combineLatest([this.store.select(YMCAState.selectItem)]).pipe(
       map(([items]) => [...items])
     )
   }
 
   clearSelected() {
+    this.router.navigate(['main']);
     this.store.dispatch([
       new ClearSelectedItem()
     ])
