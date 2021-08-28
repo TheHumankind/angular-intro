@@ -21,6 +21,7 @@ export class AccountComponent {
     if (this.store.selectSnapshot(YMCAState.loginBool) === false) {
       this.router.navigate(['login'])
     } else {
+      this.router.navigate(['main'])
       this.store.dispatch([
         new ChangeLoginTrigger(),
       ]);
