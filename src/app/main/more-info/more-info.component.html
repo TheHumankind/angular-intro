@@ -1,0 +1,41 @@
+<div class="info" *ngFor="let item of selected$ | async">
+    <div class="info-img">
+        <img src="{{item.snippet.thumbnails.high.url}}" alt="channaral img">
+    </div>
+    <div class="info-container">
+        <div class="info-header">
+            <h3 class="title">
+                {{item.snippet.title}}
+            </h3>
+            <span class="date">
+                {{item.snippet.publishedAt | date:'medium'}}
+            </span>
+        </div>
+        <div class="info-descr">
+            {{item.snippet.description}}
+        </div>
+        <div class="info-footer">
+            <button class="btn" (click)="clearSelected()">
+                <span>Back</span>
+            </button>
+            <div class="info-stat">
+                <div>
+                    <img src="./../../../assets/img/love.svg" alt="like icon">
+                    {{ item.statistics.likeCount }}
+                </div>
+                <div>
+                    <img src="./../../../assets/img/hate.svg" alt="HATE icon">
+                    {{ item.statistics.dislikeCount }}
+                </div>
+                <div>
+                    <img src="./../../../assets/img/watch.svg" alt="WATCH icon">
+                    {{ item.statistics.viewCount }}
+                </div>
+                <div>
+                    <img src="./../../../assets/img/comment.svg" alt="COMMENT icon">
+                    {{ item.statistics.commentCount }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
